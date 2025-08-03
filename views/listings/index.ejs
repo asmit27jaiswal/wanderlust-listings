@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplate") %> 
+
+<div id="filters" class="d-flex flex-wrap align-items-center justify-content-between flex-column flex-md-row">
+  <!-- Filter buttons (collapsible section) -->
+  <div class="filter-wrapper collapse d-md-flex flex-wrap" id="filterCollapse">
+    <% const filters = [
+      { icon: "fa-fire", label: "Trending" },
+      { icon: "fa-bed", label: "Rooms" },
+      { icon: "fa-mountain-city", label: "Iconic Cities" },
+      { icon: "fa-mountain", label: "Mountains" },
+      { icon: "fa-fort-awesome", label: "Castles" },
+      { icon: "fa-person-swimming", label: "Amazing Pools" },
+      { icon: "fa-campground", label: "Camping" },
+      { icon: "fa-cow", label: "Farms" },
+      { icon: "fa-snowflake", label: "Arctic" },
+      { icon: "fa-igloo", label: "Domes" },
+      { icon: "fa-ship", label: "Boats" },
+    ]; %>
+    <% filters.forEach(filter => { %>
+      <div class="filter">
+        <div><i class="fa-solid <%= filter.icon %>"></i></div>
+        <p><%= filter.label %></p>
+      </div>
+    <% }); %>
+  </div>
+
+  <!-- Toggle button only on small screens -->
+  <button class="btn btn-outline-dark d-md-none my-2" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+    Filters
+  </button>
+
+  <!-- Tax toggle (always visible) -->
+  <div class="tax-toggle ms-md-3 mt-2 mt-md-0">
+    <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-2">
+  <% for(let listing of allListings) { %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+      <div class="card col listing-card">
+      <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_img" style="height: 20rem">
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b><%= listing.title %></b> <br>
+          &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+          <i class="tax-info"> &nbsp; +18% GST</i>
+        </p>
+      </div>
+    </div>
+    </a>
+  <% } %>
+</div>
