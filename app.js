@@ -80,9 +80,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => {
-    res.send("Home route working!");
-});
+// app.get("/", (req, res) => {
+//     res.redirect("/listings"); // Or use res.render("home") if you have a landing page
+// });
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
