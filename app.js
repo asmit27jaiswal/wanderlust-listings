@@ -84,6 +84,10 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
+app.get("/", (req, res) => {
+    res.redirect("/listings"); // Or use res.render("home") if you have a landing page
+});
+
 app.use((err, req, res, next) => {
     if (res.headersSent) {
     // If response is already sent, let Express handle the error
