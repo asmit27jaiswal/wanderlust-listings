@@ -81,7 +81,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-    res.redirect("/listings"); // Or use res.render("home") if you have a landing page
+    res.send("Home route working!");
 });
 
 app.use("/listings", listingRouter);
