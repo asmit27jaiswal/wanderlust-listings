@@ -80,13 +80,13 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/listings", listingRouter);
-app.use("/listings/:id/reviews", reviewRouter);
-app.use("/", userRouter);
-
 app.get("/", (req, res) => {
     res.redirect("/listings"); // Or use res.render("home") if you have a landing page
 });
+
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
 
 app.use((err, req, res, next) => {
     if (res.headersSent) {
