@@ -151,6 +151,7 @@ body {
 /* Filter container */
 #filters {
     gap: 1rem;
+    margin-top: 2rem !important;
 }
 
 /* Each filter icon block */
